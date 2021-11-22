@@ -385,6 +385,7 @@ a {
   width: 100%;
   border: none;
   border-bottom: 1px solid #ccc;
+  text-align: center;
 }
 .w3-dropdown-click,
 .w3-dropdown-hover {
