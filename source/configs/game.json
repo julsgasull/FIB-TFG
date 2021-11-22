@@ -1,0 +1,24 @@
+{
+    "http://localhost:8888/moodle311" : [{
+        "default": true,
+        "client_id" : "zM5SDfwGaSTLMy9",
+        "deployment_ids" : ["5"],
+        "auth_token_url" : "http://localhost:8888/moodle311/mod/lti/token.php",
+        "auth_login_url" : "http://localhost:8888/moodle311/mod/lti/auth.php",
+        "auth_audience": null, 
+        "key_set": {
+            "keys": [
+                {
+                    "kty": "RSA",
+                    "alg": "RS256",
+                    "kid": "0a67ee940ba497ed72d9",
+                    "e": "AQAB",
+                    "n": "xuJSF4-X_jovLMEthnd2y_iMwolDCq3Zoks1vp7udVfIDIgApi5qq3F7Wt76n7JBakNtOK7L6F2O1B1qYAxdQXkCQoJdLszaYUR4i5vs01dza29EbFWA4_8-fStPTTxJe-uHFq0apkMbEKOFI75nI8P63KVmIJnahbOS_TzMLd9a8aBndGvuLcLdL68ae3AbJ9yHkmNhAoUn_3eDrmVRVSQW8SvVFimV579mDKk3iZFk42IOZELUkXHfI3gqKtgbgIgKa8Y_0MbDuTFJusm-jupYT-82JaA1DH3YS9Y0lzfPRct51YPdwUuYUwV_HzLAvAr2mAIVP9gzfRS6ZGYFOQ",
+                    "use": "sig"
+                }
+            ]
+        },
+        "private_key_file" : "private.key",
+        "public_key_file": "public.key"
+    }]
+}

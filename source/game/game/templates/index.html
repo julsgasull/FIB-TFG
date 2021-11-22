@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <title>Nexus</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="{% static 'basicStyle.css' %}" rel="stylesheet" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Raleway"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <style>
+    body,
+    h1 {
+      font-family: "Raleway", Arial, sans-serif;
+    }
+    h1 {
+      letter-spacing: 6px;
+    }
+    .w3-row-padding img {
+      margin-bottom: 12px;
+    }
+  </style>
+  <body>
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-content" style="max-width: 1500px">
+      <!-- Header -->
+      <header class="w3-panel w3-center w3-opacity" style="padding: 50px 16px">
+        <h1 class="w3-xlarge">Benvingut/da a Nexus!</h1>
+        <p>
+          Nexus és una eina que permet <i><b>penjar</b></i
+          >, <i><b>editar</b></i> i
+          <i><b>consultar l’historial </b></i> d’apunts d’aquesta assignatura.
+        </p>
+      </header>
+      <div>
+        <img src="https://asia.olympus-imaging.com/content/000107507.jpg" class="w3-image>
+      </div>
+      <div>
+        <img src="images/study-with-pc.jpg" class="w3-image>
+      </div>
+      <div class="w3-panel">
+        <h2 class="w3-large">Quina acció vols fer?</h2>
+        <i class="fa fa-info-circle" style="color:#196EBC"></i></i>
+        <label><i>Per poder editar o mirar l’historial d’un fitxer, selecciona la opció “Consultar apunts”.</i></label>
+        <form class="w3-center" style="width: 25%;">
+          <select class="w3-select" id="accio">
+            <option value="hide">-- Selecciona una acció --</option>
+            <option value="penjar">Penjar fitxer</option>
+            <option value="consultar">Consultar apunts</option>
+          </select>
+          <input class="w3-input" type="submit" value="Submit" />
+        </form>
+      </div>
+
+      <!-- End Page Content -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large">
+      <a
+        class="fa fa-instagram w3-hover-opacity"
+        href="https://www.instagram.com/juliagasull/"
+      ></a>
+      <a
+        class="fa fa-github w3-hover-opacity"
+        href="https://github.com/julsgasull/"
+      ></a>
+      <a
+        class="fa fa-linkedin w3-hover-opacity"
+        href="https://es.linkedin.com/in/júlia-gasull-navarro-097645154"
+      ></a>
+      <p>
+        Fet per
+        <a
+          href="https://github.com/julsgasull/"
+          target="_blank"
+          class="w3-hover-text-green"
+          >Júlia Gasull</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>
