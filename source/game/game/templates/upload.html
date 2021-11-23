@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<title>Nexus</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="{% static 'basicStyle.css' %}" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Raleway", Arial, sans-serif;
+    }
+
+    h1 {
+        letter-spacing: 6px;
+    }
+
+    .w3-row-padding img {
+        margin-bottom: 12px;
+    }
+</style>
+<script type="text/javascript" src="{% static 'breakout.js' %}" charset="utf-8"></script>
+
+<body>
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-content" style="max-width: 1500px">
+        <!-- Header -->
+        <header class="w3-panel" style="padding: 50px 16px">
+            <button class="w3-button" onclick="goBack()">
+                <i class="fa fa-backward"></i> Go Back
+            </button>
+            <script>
+                function goBack() {
+                    window.history.back();
+                }
+            </script>
+            <h1 class="w3-xlarge">Penjar fitxer</h1>
+            <p>
+                En aquesta secció pots penjar un fitxer per l’assignatura.
+            </p>
+            <i class="fa fa-info-circle" style="color:#196EBC"></i>
+            <label><i>Per poder editar o mirar l’historial d’un fitxer, selecciona la opció <b>“Consultar
+                        apunts”.</b></i></label>
+        </header>
+        <div class="w3-panel" style="text-align:center">
+            <div>
+                <img style="width: 75%; height:auto"
+                    src="https://github.com/julsgasull/FIB-TFG/blob/main/source/game/game/templates/images/study-with-pc.jpg?raw=true"
+                    class="w3-image" alt="study with pc">
+            </div>
+            </br></br>
+            <h2 class="w3-large">Penjar:</h2>
+        </div>
+        <!-- End Page Content -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-medium">
+        <a class="fa fa-instagram w3-hover-opacity" href="https://www.instagram.com/juliagasull/"></a>
+        <a class="fa fa-github w3-hover-opacity" href="https://github.com/julsgasull/"></a>
+        <a class="fa fa-linkedin w3-hover-opacity" href="https://es.linkedin.com/in/júlia-gasull-navarro-097645154"></a>
+        <p>
+            Fet per
+            <a href="https://github.com/julsgasull/" target="_blank" class="w3-hover-text-green">Júlia Gasull</a>
+        </p>
+    </footer>
+</body>
+
+</html>

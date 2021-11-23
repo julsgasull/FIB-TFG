@@ -15,7 +15,7 @@ from pylti1p3.tool_config import ToolConfJsonFile
 from pylti1p3.registration import Registration
 
 
-PAGE_TITLE = 'Game Example'
+PAGE_TITLE = 'NEXUS'
 
 
 class ExtendedDjangoMessageLaunch(DjangoMessageLaunch):
@@ -82,20 +82,19 @@ def launch(request):
     message_launch_data = message_launch.get_launch_data()
     pprint.pprint(message_launch_data)
 
-    difficulty = message_launch_data.get('https://purl.imsglobal.org/spec/lti/claim/custom', {})\
-        .get('difficulty', None)
-    if not difficulty:
-        difficulty = request.GET.get('difficulty', 'normal')
-
     return render(request, 'index.html', {
         'page_title': PAGE_TITLE,
         'is_deep_link_launch': message_launch.is_deep_link_launch(),
         'launch_data': message_launch.get_launch_data(),
         'launch_id': message_launch.get_launch_id(),
-        'curr_user_name': message_launch_data.get('name', ''),
-        'curr_diff': difficulty
+        'curr_user_name': message_launch_data.get('name', '')
     })
 
+def upload(request):
+    tool_conf = get_tool_conf()
+    return render(request, 'upload.html', {
+        'page_title': PAGE_TITLE
+    })
 
 def get_jwks(request):
     tool_conf = get_tool_conf()
