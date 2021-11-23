@@ -14,17 +14,17 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
   <style>
-    body,
-    h1 {
-      font-family: "Raleway", Arial, sans-serif;
-    }
-    h1 {
-      letter-spacing: 6px;
-    }
-    .w3-row-padding img {
-      margin-bottom: 12px;
-    }
+    body, h1, h2, h3, h4, h5, h6 {font-family: "Raleway", Arial, sans-serif; }
+    h1 { letter-spacing: 6px;}
+    .w3-row-padding img {margin-bottom: 12px; }
   </style>
+  <script type="text/javascript">
+    // Set game difficulty if it has been set in deep linking
+    var currDiff = "{{ curr_diff }}";
+    var currUserName = "{{ curr_user_name }}";
+    var launchId = "{{ launch_id }}";
+    </script>
+    <script type="text/javascript" src="{% static 'breakout.js' %}" charset="utf-8"></script>
   <body>
     <!-- !PAGE CONTENT! -->
     <div class="w3-content" style="max-width: 1500px">
@@ -36,26 +36,36 @@
           <i><b>consultar l’historial </b></i> d’apunts d’aquesta assignatura.
         </p>
       </header>
-      <h1 class="w3-large">Quina acció vols fer?</h1>
+      <h2 class="w3-large">Quina acció vols fer?</h2>
       <div class="w3-panel" style="text-align:center">
         <div>
           <img style="width: 75%; height:auto" src="https://github.com/julsgasull/FIB-TFG/blob/main/source/game/game/templates/images/study-with-pc.jpg?raw=true" class="w3-image" alt="study with pc">
         </div>
         </br></br>
-        <form>
-          <select class="w3-select" id="accio">
+        <form method="get" action="" role="option">
+          <select class="w3-select" id="action">
             <option value="hide">-- Selecciona una acció --</option>
-            <option value="penjar">Penjar fitxer</option>
-            <option value="consultar">Consultar apunts</option>
+            <option value="upload">Penjar fitxer</option>
+            <option value="consult">Consultar apunts</option>
           </select>
-          <input class="w3-input" type="submit" value="Submit" />
+          <button class="w3-input" type="button" id="submit">Submit</button>         
+          <!-- <input class="w3-input" type="submit" value="Submit" id="submit"/> -->
         </form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+        <script type = "text/javascript" language = "javascript">
+          jQuery(document).ready(function() 
+          {
+            jQuery("#submit").click(function(){
+              var action_value = $('#action').val();
+              if (action_value != "hide") window.location.href = '/action/' + action_value;
+            });
+          });
+        </script>
         </br></br>
         <i class="fa fa-info-circle" style="color:#196EBC"></i>
         <label><i>Per poder editar o mirar l’historial d’un fitxer, selecciona la opció <b>“Consultar apunts”.</b></i></label>
         </br></br>
       </div>
-
       <!-- End Page Content -->
     </div>
 
