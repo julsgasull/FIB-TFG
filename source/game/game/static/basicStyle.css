@@ -291,6 +291,11 @@ a {
 .w3-table-all td:first-child {
   padding-left: 16px;
 }
+
+tt {
+  font-family: "Lucida Console", "Menlo", "Monaco", "Courier", monospace;
+}
+
 .w3-btn,
 .w3-button {
   border: none;

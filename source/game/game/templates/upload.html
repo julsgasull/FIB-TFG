@@ -33,9 +33,7 @@
     <div class="w3-content" style="max-width: 1500px">
         <!-- Header -->
         <header class="w3-panel" style="padding: 50px 16px">
-            <button class="w3-button" onclick="goBack()">
-                <i class="fa fa-backward"></i> Go Back
-            </button>
+            <button class="w3-button" onclick="goBack()"><i class="fa fa-backward"></i> Enrere</button>
             <script>
                 function goBack() {
                     window.history.back();
@@ -46,8 +44,23 @@
                 En aquesta secció pots penjar un fitxer per l’assignatura.
             </p>
             <i class="fa fa-info-circle" style="color:#196EBC"></i>
-            <label><i>Per poder editar o mirar l’historial d’un fitxer, selecciona la opció <b>“Consultar
-                        apunts”.</b></i></label>
+            <label>
+                <i>Per tal de trobar millor els documents, el nom del document hauria tenir un nom amb aquest format:</i>
+                <b><tt> “nom_del_curs-nom_del_tema-apartat-del-tema-nom-de-l’autor.extensió”</tt></b>.
+                </br>
+                <i>Per exemple, si un alumne amb el nom</i>
+                <b><tt> “John Doe”</tt></b>
+                <i> penja apunts de l’assignatura</i>
+                <b><tt> “FM”</tt></b>
+                <i>, el tema </i>
+                <b><tt> “Introducció”</tt></b>
+                <i>, i l’apartat </i>
+                <b><tt> “Què és la lògica?”</tt></b>
+                <i> amb el format</i>
+                <b><tt> “pdf”</tt></b>
+                <i>, llavors el document es diria:</i>
+                <b><tt> FM-Introducció-QuèÉsLaLògica-JohnDoe.pdf”</tt></b>.
+            </label>
         </header>
         <div class="w3-panel" style="text-align:center">
             <div>
