@@ -96,6 +96,12 @@ def upload(request):
         'page_title': PAGE_TITLE
     })
 
+def consult(request):
+    tool_conf = get_tool_conf()
+    return render(request, 'consult.html', {
+        'page_title': PAGE_TITLE
+    })
+
 def get_jwks(request):
     tool_conf = get_tool_conf()
     return JsonResponse(tool_conf.get_jwks(), safe=False)
