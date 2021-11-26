@@ -50,24 +50,6 @@
 					class="w3-image" alt="study with pc">
 			</div>
 			</br></br>
-			<form method="get" action="" role="option">
-				<select class="w3-select" id="action">
-					<option value="hide">-- Selecciona una acció --</option>
-					<option value="upload">Penjar fitxer</option>
-					<option value="consult">Consultar apunts</option>
-				</select>
-				<button class="w3-input" type="button" id="submit">Submit</button>
-			</form>
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-			<script type="text/javascript" language="javascript">
-				jQuery(document).ready(function () {
-					jQuery("#submit").click(function () {
-						var action_value = $('#action').val();
-						if (action_value != "hide") window.location.href = '/' + action_value;
-					});
-				});
-			</script>
-			</br>
 			<div style="padding: 5px;background-color: #d1eeff;">
                 <table>
                     <tr>
@@ -80,6 +62,24 @@
                     </tr>
                 </table>
             </div>
+			</br>
+			<form method="get" action="" role="option">
+				<select class="w3-select" id="action">
+					<option value="hide">-- Selecciona una acció --</option>
+					<option value="upload">Penjar fitxer</option>
+					<option value="consult">Consultar apunts</option>
+				</select>
+				<button class="w3-input" type="button" id="submit">Executar acció seleccionada</button>
+			</form>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+			<script type="text/javascript" language="javascript">
+				jQuery(document).ready(function () {
+					jQuery("#submit").click(function () {
+						var action_value = $('#action').val();
+						if (action_value != "hide") window.location.href = '/' + action_value;
+					});
+				});
+			</script>
 			</br></br>
 		</div>
 		<!-- End Page Content -->
