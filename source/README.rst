@@ -19,7 +19,7 @@ First of all choose and configure test LTI 1.3 Platform. It may be:
 .. _Documentation: https://docs.blackboard.com/standards/lti/tutorials/py-lti-1p3.html
 
 The most simple way to check example is to use ``docker`` + ``docker-compose``.
-Change the necessary configs in the ``configs/game.json`` (`here is instruction`_ how to generate your own public + private keys):
+Change the necessary configs in the ``configs/app.json`` (`here is instruction`_ how to generate your own public + private keys):
 
 .. _here is instruction: https://github.com/dmitry-viskov/pylti1.3/wiki/How-to-generate-JWT-RS256-key-and-JWKS
 
@@ -58,10 +58,10 @@ You may use virtualenv instead of docker:
     $ virtualenv venv
     $ source venv/bin/activate
     $ pip install -r requirements.txt
-    $ cd game
+    $ cd src
     $ python manage.py runserver 127.0.0.1:9001
 
-Now there is game example tool you can launch into on the port 9001:
+Now there is app example tool you can launch into on the port 9001:
 
 .. code-block:: shell
 

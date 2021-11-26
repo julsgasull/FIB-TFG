@@ -40,8 +40,8 @@
                 }
             </script>
             <div class="w3-center">
-                <h2 class="w3-xlarge">Consultar fitxers</h2>
-                <p>En aquesta secció pots consultar tots els fitxers de l’assignatura.</p>
+                <h2 class="w3-xlarge">Penjar fitxer</h2>
+                <p>En aquesta secció pots penjar un fitxer per l’assignatura.</p>
             </div>
             <div style=" padding: 5px;background-color: #d1eeff;">
                 <table>
@@ -50,7 +50,7 @@
                         <td></br></td>
                         <td>
                             <label class="w3-small">
-                                <i>Els fitxers PDF no es poden editar i, per tant, no tenen historial.</i>
+                                <i>Per tal de trobar millor els documents, el nom del document hauria tenir un nom amb aquest format:</i><b><tt> “nom_del_curs-nom_del_tema-apartat-del-tema-nom-de-l’autor.extensió”</tt></b>.<i> Per exemple, si un alumne amb el nom</i><b><tt> “John Doe”</tt></b><i> penja apunts de l’assignatura</i><b><tt> “FM”</tt></b><i>, el tema </i><b><tt> “Introducció”</tt></b><i>, i l’apartat </i><b><tt> “Què és la lògica?”</tt></b><i> amb el format</i><b><tt> “pdf”</tt></b><i>, llavors el document es diria:</i><b><tt> FM-Introducció-QuèÉsLaLògica-JohnDoe.pdf”</tt></b>.
                             </label>
                         </td> 
                     </tr>
@@ -58,10 +58,20 @@
             </div>
         </header>
         <div class="w3-panel">
+            <div>
+                <form method="post" enctype="multipart/form-data">
+                    <div>
+                        <label class="w3-large">Penjar:</label>
+                        <input type="file" id="apunts" name="apunts" accept=".md, .pdf, .png, .jpg">
+                        <button class="w3-button" style="background-color:#196EBC;color:white;">Penjar</button>
+                    </div>
+                </form>
+            </div>
+            </br></br>
             <div style="text-align:center">
                 <img style="width: 75%; height:auto"
-                src="https://github.com/julsgasull/FIB-TFG/blob/main/source/game/game/templates/images/book.png?raw=true"
-                class="w3-image" alt="study with book">
+					src="../static/images/study-with-headphones.png"
+					class="w3-image" alt="study with headphones">
             </div>
         </div>
         <!-- End Page Content -->

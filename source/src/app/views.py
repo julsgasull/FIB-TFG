@@ -2,7 +2,7 @@ import datetime
 import os
 import pprint
 
-from django.conf import settings
+from django.conf import settings as django_settings
 from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
@@ -14,9 +14,7 @@ from pylti1p3.lineitem import LineItem
 from pylti1p3.tool_config import ToolConfJsonFile
 from pylti1p3.registration import Registration
 
-
-PAGE_TITLE = 'NEXUS'
-
+from app.settings import PAGE_TITLE
 
 class ExtendedDjangoMessageLaunch(DjangoMessageLaunch):
 
@@ -35,7 +33,7 @@ class ExtendedDjangoMessageLaunch(DjangoMessageLaunch):
 
 
 def get_lti_config_path():
-    return os.path.join(settings.BASE_DIR, '..', 'configs', 'game.json')
+    return os.path.join(django_settings.BASE_DIR, '..', 'configs', 'app.json')
 
 
 def get_tool_conf():
@@ -44,7 +42,7 @@ def get_tool_conf():
 
 
 def get_jwk_from_public_key(key_name):
-    key_path = os.path.join(settings.BASE_DIR, '..', 'configs', key_name)
+    key_path = os.path.join(django_settings.BASE_DIR, '..', 'configs', key_name)
     f = open(key_path, 'r')
     key_content = f.read()
     jwk = Registration.get_jwk(key_content)
@@ -116,7 +114,7 @@ def configure(request, launch_id, difficulty):
     if not message_launch.is_deep_link_launch():
         return HttpResponseForbidden('Must be a deep link!')
 
-    launch_url = request.build_absolute_uri(reverse('game-launch') + '?difficulty=' + difficulty)
+    launch_url = request.build_absolute_uri(reverse('app-launch') + '?difficulty=' + difficulty)
 
     resource = DeepLinkResource()
     resource.set_url(launch_url)\

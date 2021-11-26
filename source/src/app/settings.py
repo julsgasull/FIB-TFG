@@ -25,19 +25,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'game',
+    'app',
     'debug_toolbar',
 ]
 
 MIDDLEWARE = [
-    'game.middleware.SameSiteMiddleware',
+    'app.middleware.SameSiteMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-ROOT_URLCONF = 'game.urls'
+ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = [
     {
@@ -57,7 +57,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'game.wsgi.application'
+WSGI_APPLICATION = 'app.wsgi.application'
 
 SESSION_COOKIE_NAME = 'sessionid'
 SESSION_COOKIE_SAMESITE = None  # should be set as 'None' for Django >= 3.1
@@ -114,3 +114,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+PAGE_TITLE = 'NEXUS'
