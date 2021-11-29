@@ -2,6 +2,8 @@ import django
 from django.conf import settings as django_settings
 from django.utils.deprecation import MiddlewareMixin
 
+########################################################################
+
 
 class SameSiteMiddleware(MiddlewareMixin):
     def process_response(self, request, response):
@@ -27,3 +29,6 @@ class SameSiteMiddleware(MiddlewareMixin):
             if csrf_cookie_samesite is None and csrf_cookie_name in response.cookies:
                 response.cookies[csrf_cookie_name]["samesite"] = "None"
         return response
+
+
+########################################################################
