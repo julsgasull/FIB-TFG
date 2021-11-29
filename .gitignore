@@ -6,3 +6,5 @@ testingOtherTools/docker-compose-moodle/
 testingOtherTools/tsugi/
 
 testingOtherTools/web2py/
+
+source/.vscode/
