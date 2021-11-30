@@ -36,11 +36,10 @@
 <div class="w3-panel">
     <div>
         <form method="post" enctype="multipart/form-data">
-            <div>
-                <label class="w3-large">Penjar:</label>
-                <input type="file" id="apunts" name="apunts" accept=".md, .pdf, .png, .jpg">
-                <button class="w3-button" style="background-color:#196EBC;color:white;">Penjar</button>
-            </div>
+            <label class="w3-large">Penjar:</label>
+            {% csrf_token %}
+            <input type="file" name="document" accept=".md, .pdf, .png, .jpg">
+            <button class="w3-button" type="submit" style="background-color:#196EBC;color:white;">Penjar</button>
         </form>
     </div>
     </br></br>

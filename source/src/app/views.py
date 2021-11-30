@@ -20,6 +20,9 @@ from pylti1p3.registration import Registration
 
 from app.settings import PAGE_TITLE
 
+from django.core.files.storage import FileSystemStorage
+
+
 ########################################################################
 
 
@@ -129,6 +132,10 @@ def launch(request):
 
 def upload(request):
     tool_conf = get_tool_conf()
+    if request.method == "POST":
+        uploaded_file = request.FILES["document"]
+        fs = FileSystemStorage()
+        fs.save(uploaded_file.name, uploaded_file)
     return render(request, "upload.html", {"page_title": PAGE_TITLE})
 
 
@@ -149,6 +156,8 @@ def get_jwks(request):
 
 
 ########################################################################
+
+
 def configure(request, launch_id, difficulty):
     tool_conf = get_tool_conf()
     launch_data_storage = get_launch_data_storage()

@@ -73,6 +73,12 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": os.path.join(BASE_DIR, "data/database.db"),
+#     }
+# }
 
 CACHES = {
     "default": {
@@ -129,3 +135,6 @@ STATIC_URL = "/static/"
 PAGE_TITLE = "NEXUS"
 
 ########################################################################
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
