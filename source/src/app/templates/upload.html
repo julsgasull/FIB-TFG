@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <header class="w3-panel" style="padding: 20px 16px">
     <button class="w3-button" style="color:#196EBC;" onclick="goBack()"><i class="fa fa-backward"></i> Enrere</button>
@@ -33,6 +32,9 @@
         </table>
     </div>
 </header>
+<div>
+    <p>[TESTING ONLY] Username: {{curr_user_name}}</p>
+</div>
 <div class="w3-panel">
     <div>
         <form method="post" enctype="multipart/form-data">
@@ -41,6 +43,9 @@
             <input type="file" name="document" accept=".md, .pdf, .png, .jpg">
             <button class="w3-button" type="submit" style="background-color:#196EBC;color:white;">Penjar</button>
         </form>
+    </div>
+    <div>
+        <p style="background-color:black">{{ curr_user_name }}</p>
     </div>
     </br></br>
     <div style="text-align:center">
