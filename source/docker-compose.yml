@@ -9,6 +9,7 @@ services:
     volumes:
       - ./configs:/configs
       - ./src:/src
+      - ./src/media:/media
     working_dir: /src
     ports:
       - "9001:9001"
