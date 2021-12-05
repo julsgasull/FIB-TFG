@@ -23,6 +23,11 @@ from app.settings import PAGE_TITLE
 from django.core.files.storage import FileSystemStorage
 
 
+user_name = ""
+user_username = ""
+course_id = ""
+course_name = ""
+
 ########################################################################
 
 
@@ -114,15 +119,31 @@ def launch(request):
     message_launch_data = message_launch.get_launch_data()
     pprint.pprint(message_launch_data)
 
+    global user_name, user_username, course_id, course_name
+
+    user_name = message_launch_data.get("name", "")
+    user_username = message_launch_data.get(
+        "https://purl.imsglobal.org/spec/lti/claim/ext", ""
+    ).get("user_username", "")
+
+    course_id = message_launch_data.get(
+        "https://purl.imsglobal.org/spec/lti/claim/context", ""
+    ).get("id", "")
+    course_name = message_launch_data.get(
+        "https://purl.imsglobal.org/spec/lti/claim/context", ""
+    ).get("title", "")
+
     return render(
         request,
         "index.html",
         {
-            "page_title": PAGE_TITLE,
             "is_deep_link_launch": message_launch.is_deep_link_launch(),
             "launch_data": message_launch.get_launch_data(),
             "launch_id": message_launch.get_launch_id(),
-            "curr_user_name": message_launch_data.get("name", ""),
+            "user_name": user_name,
+            "user_username": user_username,
+            "course_id": course_id,
+            "course_name": course_name,
         },
     )
 
@@ -136,7 +157,17 @@ def upload(request):
         uploaded_file = request.FILES["document"]
         fs = FileSystemStorage()
         fs.save(uploaded_file.name, uploaded_file)
-    return render(request, "upload.html", {"page_title": PAGE_TITLE})
+
+    return render(
+        request,
+        "upload.html",
+        {
+            "user_name": user_name,
+            "user_username": user_username,
+            "course_id": course_id,
+            "course_name": course_name,
+        },
+    )
 
 
 ########################################################################
@@ -144,7 +175,16 @@ def upload(request):
 
 def consult(request):
     tool_conf = get_tool_conf()
-    return render(request, "consult.html", {"page_title": PAGE_TITLE})
+    return render(
+        request,
+        "consult.html",
+        {
+            "user_name": user_name,
+            "user_username": user_username,
+            "course_id": course_id,
+            "course_name": course_name,
+        },
+    )
 
 
 ########################################################################
