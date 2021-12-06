@@ -167,9 +167,21 @@ def upload(request):
         # save file to media folder
         fs = FileSystemStorage()
         fs.save(MEDIA_ROOT + "/" + file_path, uploaded_file)
+        uploaded_file_url = fs.url(file_name)
         # add to database
         addRow(course_id, user_username, now_string, file_path)
 
+        return render(
+            request,
+            "upload.html",
+            {
+                "user_name": user_name,
+                "user_username": user_username,
+                "course_id": course_id,
+                "course_name": course_name,
+                "uploaded_file_url": uploaded_file_url,
+            },
+        )
     return render(
         request,
         "upload.html",
