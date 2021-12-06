@@ -1,6 +1,7 @@
 import django
 from django.conf import settings as django_settings
 from django.utils.deprecation import MiddlewareMixin
+from app.db import *
 
 ########################################################################
 
@@ -28,6 +29,7 @@ class SameSiteMiddleware(MiddlewareMixin):
                 response.cookies[session_cookie_name]["samesite"] = "None"
             if csrf_cookie_samesite is None and csrf_cookie_name in response.cookies:
                 response.cookies[csrf_cookie_name]["samesite"] = "None"
+        create_table_if_missing()
         return response
 
 

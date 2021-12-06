@@ -10,6 +10,7 @@ services:
       - ./configs:/configs
       - ./src:/src
       - ./src/media:/media
+      - ./src/data:/data
     working_dir: /src
     ports:
       - "9001:9001"

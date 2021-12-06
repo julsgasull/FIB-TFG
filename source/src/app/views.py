@@ -1,4 +1,5 @@
-import datetime
+from datetime import datetime
+
 import os
 import pprint
 
@@ -18,14 +19,18 @@ from pylti1p3.lineitem import LineItem
 from pylti1p3.tool_config import ToolConfJsonFile
 from pylti1p3.registration import Registration
 
-from app.settings import PAGE_TITLE
+from app.settings import MEDIA_ROOT
+from app.db import *
 
 from django.core.files.storage import FileSystemStorage
 
 
+########################################################################
+
+# initialize global variables
 user_name = ""
 user_username = ""
-course_id = ""
+course_id = -1
 course_name = ""
 
 ########################################################################
@@ -155,8 +160,15 @@ def upload(request):
     tool_conf = get_tool_conf()
     if request.method == "POST":
         uploaded_file = request.FILES["document"]
+
+        now_string = datetime.now().strftime("%d_%m_%Y__%H_%M_%S")
+        file_name = uploaded_file.name
+        file_path = course_id + "/" + now_string + "/" + file_name
+        # save file to media folder
         fs = FileSystemStorage()
-        fs.save(uploaded_file.name, uploaded_file)
+        fs.save(MEDIA_ROOT + "/" + file_path, uploaded_file)
+        # add to database
+        addRow(course_id, user_username, now_string, file_path)
 
     return render(
         request,
