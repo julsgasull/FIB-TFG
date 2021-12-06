@@ -163,7 +163,7 @@ def upload(request):
 
         now_string = datetime.now().strftime("%d_%m_%Y__%H_%M_%S")
         file_name = uploaded_file.name
-        file_path = course_id + "/" + now_string + "/" + file_name
+        file_path = course_id + "/" + file_name + "/" + now_string + "/" + file_name
         # save file to media folder
         fs = FileSystemStorage()
         fs.save(MEDIA_ROOT + "/" + file_path, uploaded_file)
