@@ -74,15 +74,40 @@ def create_file(conn, file):
 ########################################################################
 
 
-def addRow(course_id, user_username, date, file_path):
+def add_row(course_id, user_username, date, file_path):
     conn = create_connection()
-    with conn:
-        # create a new file
-        file = (course_id, user_username, date, file_path)
-        create_file(conn, file)
+    # create a new file
+    file = (course_id, user_username, date, file_path)
+    create_file(conn, file)
 
 
 ########################################################################
+
+
+def get_files(conn, course_id):
+    """
+    Get all files with the given course_id
+    :param conn:
+    :param course_id:
+    """
+    sql = """
+    SELECT file_path
+    FROM files
+    WHERE course_id = ?
+    """
+
+    cur = conn.cursor()
+    cur.execute(sql, course_id)
+    files = cur.fetchall()
+    return files
+
+
+########################################################################
+
+
+def get_files_for_course(course_id):
+    conn = create_connection()
+    return get_files(conn, course_id)
 
 
 # def main():

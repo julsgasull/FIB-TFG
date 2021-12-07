@@ -116,6 +116,7 @@ def login(request):
 
 @require_POST
 def launch(request):
+    # get data for launch
     tool_conf = get_tool_conf()
     launch_data_storage = get_launch_data_storage()
     message_launch = ExtendedDjangoMessageLaunch(
@@ -124,13 +125,12 @@ def launch(request):
     message_launch_data = message_launch.get_launch_data()
     pprint.pprint(message_launch_data)
 
+    # set velues to global variables
     global user_name, user_username, course_id, course_name
-
     user_name = message_launch_data.get("name", "")
     user_username = message_launch_data.get(
         "https://purl.imsglobal.org/spec/lti/claim/ext", ""
     ).get("user_username", "")
-
     course_id = message_launch_data.get(
         "https://purl.imsglobal.org/spec/lti/claim/context", ""
     ).get("id", "")
@@ -138,6 +138,7 @@ def launch(request):
         "https://purl.imsglobal.org/spec/lti/claim/context", ""
     ).get("title", "")
 
+    # render index.html
     return render(
         request,
         "index.html",
@@ -157,10 +158,14 @@ def launch(request):
 
 
 def upload(request):
+    # get data
     tool_conf = get_tool_conf()
-    if request.method == "POST":
-        uploaded_file = request.FILES["document"]
 
+    # code for uploading file
+    if request.method == "POST":
+        # get the file
+        uploaded_file = request.FILES["document"]
+        # compute some information
         now_string = datetime.now().strftime("%d_%m_%Y__%H_%M_%S")
         file_name = uploaded_file.name
         file_path = course_id + "/" + file_name + "/" + now_string + "/" + file_name
@@ -169,7 +174,7 @@ def upload(request):
         fs.save(MEDIA_ROOT + "/" + file_path, uploaded_file)
         uploaded_file_url = fs.url(file_name)
         # add to database
-        addRow(course_id, user_username, now_string, file_path)
+        add_row(course_id, user_username, now_string, file_path)
 
         return render(
             request,
@@ -182,6 +187,7 @@ def upload(request):
                 "uploaded_file_url": uploaded_file_url,
             },
         )
+    # data for before uploading
     return render(
         request,
         "upload.html",
@@ -198,7 +204,11 @@ def upload(request):
 
 
 def consult(request):
+    # get data
     tool_conf = get_tool_conf()
+
+    files = get_files_for_course(course_id)
+
     return render(
         request,
         "consult.html",
@@ -207,6 +217,7 @@ def consult(request):
             "user_username": user_username,
             "course_id": course_id,
             "course_name": course_name,
+            "files": files,
         },
     )
 
