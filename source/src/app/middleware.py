@@ -32,9 +32,6 @@ class SameSiteMiddleware(MiddlewareMixin):
             if csrf_cookie_samesite is None and csrf_cookie_name in response.cookies:
                 response.cookies[csrf_cookie_name]["samesite"] = "None"
 
-        # initialize database
-        create_table_if_missing()
-
         # return
         return response
 

@@ -29,6 +29,18 @@
 <div>
     {{files}}
 </div>
+
+<p id="demo"></p>
+
+<script>
+    var files = "{{ files }}";
+
+    let text = "";
+    for (let i = 0; i < files.length; i++) {
+        text += files[i] + "<br>";
+    }
+    document.getElementById("demo").innerHTML = text;
+</script>
 <div class="w3-panel">
     <div style="text-align:center">
         <img style="width: 75%; height:auto" src="../static/images/book.png" class="w3-image" alt="study with book">

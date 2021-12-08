@@ -174,7 +174,7 @@ def upload(request):
         fs.save(MEDIA_ROOT + "/" + file_path, uploaded_file)
         uploaded_file_url = fs.url(file_name)
         # add to database
-        add_row(course_id, user_username, now_string, file_path)
+        add_file_public(course_id, user_username, now_string, file_name, file_path)
 
         return render(
             request,
@@ -207,7 +207,7 @@ def consult(request):
     # get data
     tool_conf = get_tool_conf()
 
-    files = get_files_for_course(course_id)
+    files = get_files_public(course_id)
 
     return render(
         request,
