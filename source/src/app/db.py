@@ -1,5 +1,6 @@
 import sqlite3
 from sqlite3 import Error
+import numpy as np
 
 ########################################################################
 
@@ -90,10 +91,9 @@ def get_files(conn, course_id):
     cur = conn.cursor()
     cur.execute(sql, course_id)
 
-    for row in cur:
-        print(row)
+    alist = cur.fetchall()
+    files = np.array(alist)
 
-    files = []
     return files
 
 

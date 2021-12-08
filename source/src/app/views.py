@@ -24,6 +24,9 @@ from app.db import *
 
 from django.core.files.storage import FileSystemStorage
 
+import numpy as np
+import pandas as pd
+
 
 ########################################################################
 
@@ -208,7 +211,17 @@ def consult(request):
     tool_conf = get_tool_conf()
 
     files = get_files_public(course_id)
+    for file in files:
+        print("\n")
+        print("course_id = " + file[0])
+        print("username = " + file[1])
+        print("date = " + file[2])
+        print("file_name = " + file[3])
+        print("file_path = " + file[4])
 
+    # columns = ["course_id", "username", "action_date", "file_name", "file_path"]
+    # df = pd.DataFrame(files, columns=columns)
+    # files_html = df.to_html()
     return render(
         request,
         "consult.html",
