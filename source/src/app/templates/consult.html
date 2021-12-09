@@ -10,7 +10,7 @@
     </script>
     <div class="w3-center">
         <h2 class="w3-xlarge">Consultar fitxers</h2>
-        <p>En aquesta secció pots consultar tots els fitxers de l’assignatura.</p>
+        <p>En aquesta secció pots consultar tots els fitxers de l’assignatura <b>{{course_name}}</b>.</p>
     </div>
     <div style=" padding: 5px;background-color: #d1eeff;">
         <table>
@@ -24,6 +24,27 @@
                 </td>
             </tr>
         </table>
+    </div>
+    <div>
+        {% for file in files %}
+        <div>
+            <p>
+                {% for element in file %}
+                {{element}} ||
+                {% endfor %}
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+    <br>
+    {% for course_id, username, date, file_name, file_path in files %}
+    course_id = {{ course_id }}</br>
+    username = {{ username }}</br>
+    date = {{ date }}</br>
+    file_name = {{ file_name }}</br>
+    file_path = {{ file_path }}</br>
+    </br>
+    {% endfor %}
     </div>
 </header>
 <div class="w3-panel">
