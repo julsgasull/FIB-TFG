@@ -37,15 +37,13 @@
     <table class="rwd-table" style="width: 100%;">
         <tr>
             <th>Nom del fitxer</th>
-            <th>Últim usuari que l'ha modificat</th>
-            <th>Data d'última modificació</th>
+            <th>Usuari que ha creat el fitxer</th>
             <th>Accions disponibles</th>
         </tr>
         {% for course_id, username, date, file_name, file_path in files %}
         <tr>
             <td>{{ file_name }}</td>
             <td>{{ username }}</td>
-            <td>{{ date }}</td>
             <td>
                 <table>
                     <tr><i class="fa fa-eye" style="color:#196EBC;padding-right:1em;"></i></tr>

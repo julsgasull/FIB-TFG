@@ -76,16 +76,26 @@ def add_file(conn, file):
 ########################################################################
 
 
-def get_files(conn, course_id):
+def get_files_first_version(conn, course_id):
     """
     Get all files with the given course_id
     :param conn:
     :param course_id:
     """
+    # sql = """
+    # SELECT *
+    # FROM files
+    # WHERE course_id = ?
+    # """
+
     sql = """
-    SELECT *
-    FROM files
-    WHERE course_id = ?
+    SELECT course_id, username, action_date, file_name, file_path
+    FROM files where (file_name, action_date) in (
+        SELECT file_name, max(action_date) as action_date
+        FROM files
+        WHERE course_id = ?
+        GROUP BY file_name
+    );
     """
 
     cur = conn.cursor()
@@ -119,13 +129,13 @@ def add_file_public(course_id, user_username, date, file_name, file_path):
 ########################################################################
 
 
-def get_files_public(course_id):
+def get_files_first_version_public(course_id):
     conn = create_table_if_missing()
 
     files = []
     if conn is not None:
         try:
-            files = get_files(conn, course_id)
+            files = get_files_first_version(conn, course_id)
         except Error as e:
             print(e)
     else:

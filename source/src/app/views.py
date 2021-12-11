@@ -209,7 +209,8 @@ def consult(request):
     # get data
     tool_conf = get_tool_conf()
 
-    files = get_files_public(course_id)
+    files = get_files_first_version_public(course_id)
+    print("FILES:\n")
     for file in files:
         print("\n")
         print("course_id = " + file[0])
@@ -217,6 +218,7 @@ def consult(request):
         print("date = " + file[2])
         print("file_name = " + file[3])
         print("file_path = " + file[4])
+    print("---------------------------")
 
     return render(
         request,
@@ -227,6 +229,26 @@ def consult(request):
             "course_id": course_id,
             "course_name": course_name,
             "files": files,
+        },
+    )
+
+
+########################################################################
+
+
+def consult_file(request, filename):
+    # get data
+    tool_conf = get_tool_conf()
+
+    return render(
+        request,
+        "consult_file.html",
+        {
+            "user_name": user_name,
+            "user_username": user_username,
+            "course_id": course_id,
+            "course_name": course_name,
+            "file_name": filename,
         },
     )
 
