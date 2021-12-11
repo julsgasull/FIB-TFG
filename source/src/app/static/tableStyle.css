@@ -3,8 +3,8 @@
   min-width: 300px;
 }
 .rwd-table tr {
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
 }
 .rwd-table th {
   display: none;
@@ -49,13 +49,13 @@
   }
 }
 .rwd-table {
-  background: #eeeded;
+  background: #f1f1f1;
   color: #000;
   border-radius: 0.4em;
   overflow: hidden;
 }
 .rwd-table tr {
-  border-color: #eeeded;
+  border-color: #f1f1f1;
 }
 .rwd-table th,
 .rwd-table td {
