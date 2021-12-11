@@ -91,7 +91,7 @@ def get_files_first_version(conn, course_id):
     sql = """
     SELECT course_id, username, action_date, file_name, file_path
     FROM files where (file_name, action_date) in (
-        SELECT file_name, max(action_date) as action_date
+        SELECT file_name, min(action_date) as action_date
         FROM files
         WHERE course_id = ?
         GROUP BY file_name
