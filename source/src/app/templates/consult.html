@@ -36,8 +36,8 @@
 <div>
     <table class="rwd-table" style="width: 100%;">
         <tr>
-            <th>Nom del fitxer</th>
-            <th>Usuari que ha creat el fitxer</th>
+            <th>Fitxer</th>
+            <th>Usuari creador</th>
             <th>Accions disponibles</th>
         </tr>
         {% for course_id, username, date, file_name, file_path in files %}
@@ -46,10 +46,10 @@
             <td>{{ username }}</td>
             <td>
                 <table>
-                    <tr><i class="fa fa-eye" style="color:#196EBC;padding-right:1em;"></i></tr>
-                    <tr><i class="fa fa-edit" style="color:#196EBC;padding-right:1em;"></i></tr>
+                    <tr><i class="fa fa-eye" style="color:#196EBC;padding-right:1em;scale:1.125;"></i></tr>
+                    <tr><i class="fa fa-history" style="color:#196EBC;padding-right:1em;scale:1.125;""></i></tr>
                     {% if username == user_username %}
-                    <tr><i class="fa fa-trash" style="color:#96021f;padding-right:1em;"></i></tr>
+                    <tr><i class=" fa fa-trash" style="color:#96021f;padding-right:1em;scale:1.125;"></i></tr>
                     {% endif %}
                 </table>
             </td>
