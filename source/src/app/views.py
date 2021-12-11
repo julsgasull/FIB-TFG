@@ -236,26 +236,6 @@ def consult(request):
 ########################################################################
 
 
-def consult_file(request, filename):
-    # get data
-    tool_conf = get_tool_conf()
-
-    return render(
-        request,
-        "consult_file.html",
-        {
-            "user_name": user_name,
-            "user_username": user_username,
-            "course_id": course_id,
-            "course_name": course_name,
-            "file_name": filename,
-        },
-    )
-
-
-########################################################################
-
-
 def get_jwks(request):
     tool_conf = get_tool_conf()
     return JsonResponse(tool_conf.get_jwks(), safe=False)
