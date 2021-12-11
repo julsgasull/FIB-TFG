@@ -30,6 +30,9 @@
 <script type="text/javascript" src="{% static 'breakout.js' %}" charset="utf-8"></script>
 
 <body>
+    <div class="w3-panel" style="text-align:right;">
+        <b>Nom d'usuari actual: </b>{{user_username}}
+    </div>
     <!-- !PAGE CONTENT! -->
     <div class="w3-content" style="max-width: 1500px">
         {% block content %}

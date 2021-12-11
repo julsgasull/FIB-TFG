@@ -11,72 +11,53 @@
         <h2 class="w3-xlarge">Consultar fitxers</h2>
         <p>En aquesta secció pots consultar tots els fitxers de l’assignatura <b>{{course_name}}</b>.</p>
     </div>
-    <div style="padding: 5px;background-color: #d1eeff;">
-        <table>
-            <tr>
-                <td><i class="fa fa-info-circle" style="color:#196EBC"></i></td>
-                <td></br></td>
-                <td>
-                    <label class="w3-small">
-                        <i>Els fitxers PDF no es poden editar i, per tant, no tenen historial.</i>
-                    </label>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <!-- <div>
-        {% for file in files %}
-        <div>
-            <p>
-                {% for element in file %}
-                {{element}} ||
-                {% endfor %}
-            </p>
-        </div>
-        {% endfor %}
-    </div>
-    </br>
-    <div>
-        {% for course_id, username, date, file_name, file_path in files %}
-        course_id = {{ course_id }}</br>
-        username = {{ username }}</br>
-        date = {{ date }}</br>
-        file_name = {{ file_name }}</br>
-        file_path = {{ file_path }}</br>
-        </br>
-        {% endfor %}
-    </div> -->
-    </br>
-    <div>
-        <table class="rwd-table">
-            <tr>
-                <th>Usuari</th>
-                <th>Fitxer</th>
-                <th>Data</th>
-                <th>Accions</th>
-            </tr>
-            {% for course_id, username, date, file_name, file_path in files %}
-            <tr>
-                <td>{{ username }}</td>
-                <td>{{ file_name }}</td>
-                <td>{{ date }}</td>
-                <td>
-                    <table>
-                        <tr><i class="fa fa-eye" style="color:#196EBC"></i></tr>
-                        <tr><i class="fa fa-edit" style="color:#196EBC"></i></tr>
-                        {% if username == user_username %}
-                        <tr><i class="fa fa-trash" style="color:#96021f"></i></tr>
-                        {% endif %}
-                    </table>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
 </header>
+<h2 class="w3-large">Llistat de fitxers</h2>
 <div class="w3-panel">
     <div style="text-align:center">
         <img style="width: 75%; height:auto" src="../static/images/book.png" class="w3-image" alt="study with book">
     </div>
 </div>
+</br>
+<div style="padding: 5px;background-color: #d1eeff;">
+    <table>
+        <tr>
+            <td><i class="fa fa-info-circle" style="color:#196EBC"></i></td>
+            <td></br></td>
+            <td>
+                <label class="w3-small">
+                    <i>Els fitxers PDF no es poden editar i, per tant, no tenen historial.</i>
+                </label>
+            </td>
+        </tr>
+    </table>
+</div>
+</br>
+<div>
+    <table class="rwd-table" style="width: 100%;">
+        <tr>
+            <th>Nom del fitxer</th>
+            <th>Últim usuari que l'ha modificat</th>
+            <th>Data d'última modificació</th>
+            <th>Accions disponibles</th>
+        </tr>
+        {% for course_id, username, date, file_name, file_path in files %}
+        <tr>
+            <td>{{ file_name }}</td>
+            <td>{{ username }}</td>
+            <td>{{ date }}</td>
+            <td>
+                <table>
+                    <tr><i class="fa fa-eye" style="color:#196EBC;padding-right:1em;"></i></tr>
+                    <tr><i class="fa fa-edit" style="color:#196EBC;padding-right:1em;"></i></tr>
+                    {% if username == user_username %}
+                    <tr><i class="fa fa-trash" style="color:#96021f;padding-right:1em;"></i></tr>
+                    {% endif %}
+                </table>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</br></br>
 {% endblock content %}
