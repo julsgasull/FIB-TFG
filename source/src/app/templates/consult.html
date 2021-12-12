@@ -45,13 +45,11 @@
             <td>{{ file_name }}</td>
             <td>{{ username }}</td>
             <td>
-                <table>
-                    <tr><i class="fa fa-eye" style="color:#196EBC;padding-right:1em;scale:1.125;"></i></tr>
-                    <tr><i class="fa fa-history" style="color:#196EBC;padding-right:1em;scale:1.125;""></i></tr>
+                <i class="fa fa-eye" style="color:#196EBC;padding-right:1em;scale:1.125;"></i>
+                <i class="fa fa-history" style="color:#196EBC;padding-right:1em;scale:1.125;""></i>
                     {% if username == user_username %}
-                    <tr><i class=" fa fa-trash" style="color:#96021f;padding-right:1em;scale:1.125;"></i></tr>
-                    {% endif %}
-                </table>
+                    <i class=" fa fa-trash" style="color:#96021f;padding-right:1em;scale:1.125;"></i>
+                {% endif %}
             </td>
         </tr>
         {% endfor %}
