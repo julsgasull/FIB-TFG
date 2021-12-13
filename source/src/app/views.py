@@ -5,7 +5,7 @@ import pprint
 
 from django.conf import settings as django_settings
 from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from django.urls import reverse
 from pylti1p3.contrib.django import (
@@ -242,3 +242,75 @@ def get_jwks(request):
 
 
 ########################################################################
+
+
+def consult_file(request, name):
+    # get data
+    tool_conf = get_tool_conf()
+
+    print("Name = " + name)
+    return render(
+        request,
+        "consult_file.html",
+        {
+            "user_name": user_name,
+            "user_username": user_username,
+            "course_id": course_id,
+            "course_name": course_name,
+            "file_name": name,
+        },
+    )
+
+
+########################################################################
+
+
+def consult_versions(request, name):
+    # get data
+    tool_conf = get_tool_conf()
+
+    print("Name = " + name)
+    return render(
+        request,
+        "consult_versions.html",
+        {
+            "user_name": user_name,
+            "user_username": user_username,
+            "course_id": course_id,
+            "course_name": course_name,
+            "file_name": name,
+        },
+    )
+
+
+########################################################################
+
+
+def consult_versions(request, name):
+    # get data
+    tool_conf = get_tool_conf()
+
+    print("Name = " + name)
+    return render(
+        request,
+        "consult_versions.html",
+        {
+            "user_name": user_name,
+            "user_username": user_username,
+            "course_id": course_id,
+            "course_name": course_name,
+            "file_name": name,
+        },
+    )
+
+
+########################################################################
+
+
+def delete_file(request, name):
+    # get data
+    tool_conf = get_tool_conf()
+
+    print("Name = " + name)
+
+    return redirect("app-consult")

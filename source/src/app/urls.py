@@ -1,7 +1,16 @@
 from django.conf import settings
 from django.conf.urls import url
 from django.urls import include, path
-from .views import login, launch, upload, consult, get_jwks
+from .views import (
+    login,
+    launch,
+    upload,
+    consult,
+    get_jwks,
+    consult_file,
+    consult_versions,
+    delete_file,
+)
 
 ########################################################################
 
@@ -11,6 +20,17 @@ urlpatterns = [
     url(r"^upload/$", upload, name="app-upload"),
     url(r"^consult/$", consult, name="app-consult"),
     url(r"^jwks/$", get_jwks, name="app-jwks"),
+    path("consult/file/(?P<name>[\w\-]+)", consult_file, name="app-consult-file"),
+    path(
+        "consult/versions/file/(?P<name>[\w\-]+)",
+        consult_versions,
+        name="app-consult-versions",
+    ),
+    path(
+        "delete/file/(?P<name>[\w\-]+)",
+        delete_file,
+        name="app-delete-file",
+    ),
 ]
 
 ########################################################################
