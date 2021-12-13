@@ -286,27 +286,6 @@ def consult_versions(request, name):
 ########################################################################
 
 
-def consult_versions(request, name):
-    # get data
-    tool_conf = get_tool_conf()
-
-    print("Name = " + name)
-    return render(
-        request,
-        "consult_versions.html",
-        {
-            "user_name": user_name,
-            "user_username": user_username,
-            "course_id": course_id,
-            "course_name": course_name,
-            "file_name": name,
-        },
-    )
-
-
-########################################################################
-
-
 def delete_file(request, name):
     # get data
     tool_conf = get_tool_conf()
