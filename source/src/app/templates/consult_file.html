@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load markdownify %}
 {% block content %}
 <header class="w3-panel" style="padding: 20px 16px">
     <button class="w3-button" style="color:#196EBC;" onclick="goBack()"><i class="fa fa-backward"></i> Enrere</button>
@@ -11,8 +12,15 @@
         <h2 class="w3-xlarge">Estàs veient el fitxer <b>{{file_name}}</b> del curs <b>{{course_name}}</b>.</h2>
     </div>
 </header>
-<div class="file-container">
+<div style=" width: 100%; border-radius: 0.4em; background: #f1f1f1; padding: 20px;">
+
+    {% if file_extension == ".md" %}
+    {{ file_content | markdownify }}
+    {% endif %}
+
+    {% if file_extension == ".txt" %}
     {{ file_content }}
+    {% endif %}
 </div>
 </br></br>
 {% endblock content %}

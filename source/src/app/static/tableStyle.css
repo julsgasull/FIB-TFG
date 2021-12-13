@@ -71,10 +71,3 @@
 .rwd-table td:before {
   color: #196ebc;
 }
-
-.file-container {
-  width: 100%;
-  border-radius: 0.4em;
-  background: #f1f1f1;
-  padding: 20px;
-}

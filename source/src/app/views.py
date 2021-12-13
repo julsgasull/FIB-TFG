@@ -24,9 +24,6 @@ from app.db import *
 
 from django.core.files.storage import FileSystemStorage
 
-import numpy as np
-
-
 ########################################################################
 
 # initialize global variables
@@ -255,8 +252,13 @@ def consult_file(request, name):
     if extension == ".pdf":
         print("PDF!!!!!")
         return FileResponse(open(file_path, "rb"), content_type="application/pdf")
+    elif extension == ".png":
+        image_data = open(file_path, "rb").read()
+        return HttpResponse(image_data, content_type="image/png")
+    elif extension == ".jpg":
+        image_data = open(file_path, "rb").read()
+        return HttpResponse(image_data, content_type="image/jpg")
     else:
-        print("NOT PDF!!!!!")
         f = open(file_path, "r")
         file_content = f.read()
         f.close()
@@ -270,6 +272,7 @@ def consult_file(request, name):
                 "course_name": course_name,
                 "file_name": name,
                 "file_path": file_path,
+                "file_extension": extension,
                 "file_content": file_content,
             },
         )

@@ -3,3 +3,4 @@ django==3.2.9
 django-debug-toolbar==3.2.2
 PyLTI1p3==1.9.1
 numpy==1.21.4
+django-markdownify==0.8.0
