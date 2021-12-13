@@ -108,6 +108,33 @@ def get_files_first_version(conn, course_id):
 
 
 ########################################################################
+
+
+def get_file_path(conn, course_id, file_name):
+    """
+    Get file path of the last version of file with name=file name and course_id=course_id
+    :param conn:
+    :param course_id:
+    :param file_name:
+    """
+    sql = """
+    SELECT file_path
+    FROM files where (file_name, action_date) in (
+        SELECT file_name, max(action_date) as action_date
+        FROM files
+        WHERE course_id = ? AND file_name = ?
+        GROUP BY file_name
+    );
+    """
+
+    cur = conn.cursor()
+    params = (course_id, file_name)
+    cur.execute(sql, params)
+    file_path = cur.fetchone()[0]
+    return file_path
+
+
+########################################################################
 ########################## PUBLIC FUNCTIONS ############################
 ########################################################################
 
@@ -145,3 +172,18 @@ def get_files_first_version_public(course_id):
 
 
 ########################################################################
+
+
+def get_file_path_public(course_id, file_name):
+    conn = create_table_if_missing()
+
+    file_path = ""
+    if conn is not None:
+        try:
+            file_path = get_file_path(conn, course_id, file_name)
+        except Error as e:
+            print(e)
+    else:
+        print("Error! cannot create the database connection.")
+
+    return file_path

@@ -4,7 +4,7 @@ import os
 import pprint
 
 from django.conf import settings as django_settings
-from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
+from django.http import HttpResponse, HttpResponseForbidden, JsonResponse, FileResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from django.urls import reverse
@@ -248,18 +248,31 @@ def consult_file(request, name):
     # get data
     tool_conf = get_tool_conf()
 
-    print("Name = " + name)
-    return render(
-        request,
-        "consult_file.html",
-        {
-            "user_name": user_name,
-            "user_username": user_username,
-            "course_id": course_id,
-            "course_name": course_name,
-            "file_name": name,
-        },
-    )
+    file_path = MEDIA_ROOT + "/" + get_file_path_public(course_id, name)
+
+    extension = os.path.splitext(name)[1]
+    print("extension = " + extension)
+    if extension == ".pdf":
+        print("PDF!!!!!")
+        return FileResponse(open(file_path, "rb"), content_type="application/pdf")
+    else:
+        print("NOT PDF!!!!!")
+        f = open(file_path, "r")
+        file_content = f.read()
+        f.close()
+        return render(
+            request,
+            "consult_file.html",
+            {
+                "user_name": user_name,
+                "user_username": user_username,
+                "course_id": course_id,
+                "course_name": course_name,
+                "file_name": name,
+                "file_path": file_path,
+                "file_content": file_content,
+            },
+        )
 
 
 ########################################################################
@@ -269,7 +282,6 @@ def consult_versions(request, name):
     # get data
     tool_conf = get_tool_conf()
 
-    print("Name = " + name)
     return render(
         request,
         "consult_versions.html",
