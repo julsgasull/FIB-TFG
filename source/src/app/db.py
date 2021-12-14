@@ -190,6 +190,9 @@ def get_file_path_version_for_date(conn, course_id, file_name, date):
     return file_path
 
 
+########################################################################
+
+
 def delete_file(conn, course_id, file_name):
     """
     Delete file with name=file name and course_id=course_id

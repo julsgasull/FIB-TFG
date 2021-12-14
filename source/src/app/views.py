@@ -24,6 +24,8 @@ from app.db import *
 
 from django.core.files.storage import FileSystemStorage
 
+import shutil
+
 ########################################################################
 
 # initialize global variables
@@ -348,7 +350,16 @@ def consult_file_version_for_date(request, name, date):
 def delete_file(request, name):
     # get data
     tool_conf = get_tool_conf()
-    delete_file_public(course_id, name)
-    print("delete file name = " + name)
+
+    full_path = MEDIA_ROOT + "/" + course_id + "/" + name
+    print("FULL PATH = " + full_path)
+
+    if os.path.exists(full_path):
+        shutil.rmtree(full_path)
+        print("files in path " + full_path + " removed")
+        # db
+        delete_file_public(course_id, name)
+    else:
+        print("Can not delete the file as it doesn't exists")
 
     return redirect("app-consult")
