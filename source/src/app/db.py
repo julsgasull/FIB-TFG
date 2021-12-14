@@ -90,7 +90,8 @@ def get_files_first_version(conn, course_id):
 
     sql = """
     SELECT course_id, username, action_date, file_name, file_path
-    FROM files where (file_name, action_date) in (
+    FROM files
+    WHERE (file_name, action_date) in (
         SELECT file_name, min(action_date) as action_date
         FROM files
         WHERE course_id = ?
@@ -110,7 +111,7 @@ def get_files_first_version(conn, course_id):
 ########################################################################
 
 
-def get_file_path(conn, course_id, file_name):
+def get_file_path_last_version(conn, course_id, file_name):
     """
     Get file path of the last version of file with name=file name and course_id=course_id
     :param conn:
@@ -119,7 +120,8 @@ def get_file_path(conn, course_id, file_name):
     """
     sql = """
     SELECT file_path
-    FROM files where (file_name, action_date) in (
+    FROM files
+    WHERE (file_name, action_date) in (
         SELECT file_name, max(action_date) as action_date
         FROM files
         WHERE course_id = ? AND file_name = ?
@@ -131,6 +133,67 @@ def get_file_path(conn, course_id, file_name):
     params = (course_id, file_name)
     cur.execute(sql, params)
     file_path = cur.fetchone()[0]
+    return file_path
+
+
+########################################################################
+
+
+def get_file_all_versions(conn, course_id, file_name):
+    """
+    Get info of all versions of file with name=file name and course_id=course_id
+    :param conn:
+    :param course_id:
+    :param file_name:
+    """
+
+    sql = """
+    SELECT username, action_date, file_path
+    FROM files
+    WHERE course_id = ? AND file_name = ?
+    ORDER BY action_date
+    """
+
+    cur = conn.cursor()
+    params = (course_id, file_name)
+    cur.execute(sql, params)
+
+    alist = cur.fetchall()
+    files = np.array(alist)
+
+    return files
+
+
+########################################################################
+
+
+def get_file_path_version_for_date(conn, course_id, file_name, date):
+    """
+    Get file path of the last version of file with name=file name and course_id=course_id
+    :param conn:
+    :param course_id:
+    :param file_name:
+    """
+    sql = """
+    SELECT file_path
+    FROM files
+    WHERE course_id = ? AND file_name = ? AND action_date = ?;
+    """
+
+    print("Course id = " + course_id)
+    print("file_name = " + file_name)
+    print("action_date = " + date)
+
+    # SELECT file_path
+    # FROM files
+    # WHERE course_id = 5 AND file_name = "test.txt" AND action_date = "08_12_2021__11_14_46";
+
+    cur = conn.cursor()
+    params = (course_id, file_name, date)
+    cur.execute(sql, params)
+
+    file_path = cur.fetchone()[0]
+
     return file_path
 
 
@@ -174,13 +237,49 @@ def get_files_first_version_public(course_id):
 ########################################################################
 
 
-def get_file_path_public(course_id, file_name):
+def get_file_path_last_version_public(course_id, file_name):
     conn = create_table_if_missing()
 
     file_path = ""
     if conn is not None:
         try:
-            file_path = get_file_path(conn, course_id, file_name)
+            file_path = get_file_path_last_version(conn, course_id, file_name)
+        except Error as e:
+            print(e)
+    else:
+        print("Error! cannot create the database connection.")
+
+    return file_path
+
+
+########################################################################
+
+
+def get_file_all_versions_public(course_id, file_name):
+    conn = create_table_if_missing()
+
+    file_paths = ""
+    if conn is not None:
+        try:
+            file_paths = get_file_all_versions(conn, course_id, file_name)
+        except Error as e:
+            print(e)
+    else:
+        print("Error! cannot create the database connection.")
+
+    return file_paths
+
+
+########################################################################
+
+
+def get_file_path_version_for_date_public(course_id, file_name, date):
+    conn = create_table_if_missing()
+
+    file_path = ""
+    if conn is not None:
+        try:
+            file_path = get_file_path_version_for_date(conn, course_id, file_name, date)
         except Error as e:
             print(e)
     else:

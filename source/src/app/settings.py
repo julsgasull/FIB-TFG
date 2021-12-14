@@ -34,6 +34,9 @@ INSTALLED_APPS = [
 ]
 
 MARKDOWNIFY_STRIP = False
+MARKDOWNIFY_MARKDOWN_EXTENSIONS = [
+    "markdown.extensions.extra",
+]
 MARKDOWNIFY_WHITELIST_TAGS = {
     "a",
     "p",
@@ -45,11 +48,21 @@ MARKDOWNIFY_WHITELIST_TAGS = {
     "h6",
     "h7",
     "ul",
+    "ol",
     "li",
     "span",
     "strong",
     "b",
     "i",
+    "img",
+    "code",
+    "pre",
+    "table",
+    "thead",
+    "tbody",
+    "th",
+    "tr",
+    "td",
 }
 
 MIDDLEWARE = [

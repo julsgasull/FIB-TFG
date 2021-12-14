@@ -13,6 +13,25 @@
         </h2>
     </div>
 </header>
-<h1>VERSIONS of file name = {{file_name}}</h1>
+<h2 class="w3-large">Llistat de versions</h2>
+<div>
+    <table class="rwd-table" style="width: 100%;">
+        <tr>
+            <th>Usuari creador</th>
+            <th>Data de modificació</th>
+            <th>Accions disponibles</th>
+        </tr>
+        {% for username, action_date, file_path in file_info%}
+        <td>{{ username }}</td>
+        <td>{{ action_date }}</td>
+        <td>
+            <a href={% url 'app-consult-file-version-for' name=file_name date=action_date %}>
+                <i class="fa fa-eye" style="color:#196EBC;padding-right:1em;scale:1.125;"></i>
+            </a>
+        </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 </br></br>
 {% endblock content %}

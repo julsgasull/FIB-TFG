@@ -7,7 +7,8 @@ from .views import (
     upload,
     consult,
     get_jwks,
-    consult_file,
+    consult_file_last_version,
+    consult_file_version_for_date,
     consult_versions,
     delete_file,
 )
@@ -20,11 +21,20 @@ urlpatterns = [
     url(r"^upload/$", upload, name="app-upload"),
     url(r"^consult/$", consult, name="app-consult"),
     url(r"^jwks/$", get_jwks, name="app-jwks"),
-    path("consult/file/(?P<name>[\w\-]+)", consult_file, name="app-consult-file"),
+    path(
+        "consult/file/(?P<name>[\w\-]+)",
+        consult_file_last_version,
+        name="app-consult-file-last-version",
+    ),
     path(
         "consult/versions/file/(?P<name>[\w\-]+)",
         consult_versions,
         name="app-consult-versions",
+    ),
+    path(
+        "consult/file-version/(?P<name>[\w\-]+)/(?P<date>[\w\-]+)",
+        consult_file_version_for_date,
+        name="app-consult-file-version-for",
     ),
     path(
         "delete/file/(?P<name>[\w\-]+)",

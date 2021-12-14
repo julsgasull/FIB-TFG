@@ -241,16 +241,15 @@ def get_jwks(request):
 ########################################################################
 
 
-def consult_file(request, name):
+def consult_file_last_version(request, name):
     # get data
     tool_conf = get_tool_conf()
 
-    file_path = MEDIA_ROOT + "/" + get_file_path_public(course_id, name)
+    file_path = MEDIA_ROOT + "/" + get_file_path_last_version_public(course_id, name)
 
     extension = os.path.splitext(name)[1]
     print("extension = " + extension)
     if extension == ".pdf":
-        print("PDF!!!!!")
         return FileResponse(open(file_path, "rb"), content_type="application/pdf")
     elif extension == ".png":
         image_data = open(file_path, "rb").read()
@@ -285,6 +284,8 @@ def consult_versions(request, name):
     # get data
     tool_conf = get_tool_conf()
 
+    file_info = get_file_all_versions_public(course_id, name)
+
     return render(
         request,
         "consult_versions.html",
@@ -294,8 +295,51 @@ def consult_versions(request, name):
             "course_id": course_id,
             "course_name": course_name,
             "file_name": name,
+            "file_info": file_info,
         },
     )
+
+
+########################################################################
+
+
+def consult_file_version_for_date(request, name, date):
+    # get data
+    tool_conf = get_tool_conf()
+
+    file_path = (
+        MEDIA_ROOT + "/" + get_file_path_version_for_date_public(course_id, name, date)
+    )
+    print("FILE PATH = " + file_path)
+
+    extension = os.path.splitext(name)[1]
+    print("extension = " + extension)
+    if extension == ".pdf":
+        return FileResponse(open(file_path, "rb"), content_type="application/pdf")
+    elif extension == ".png":
+        image_data = open(file_path, "rb").read()
+        return HttpResponse(image_data, content_type="image/png")
+    elif extension == ".jpg":
+        image_data = open(file_path, "rb").read()
+        return HttpResponse(image_data, content_type="image/jpg")
+    else:
+        f = open(file_path, "r")
+        file_content = f.read()
+        f.close()
+        return render(
+            request,
+            "consult_file.html",
+            {
+                "user_name": user_name,
+                "user_username": user_username,
+                "course_id": course_id,
+                "course_name": course_name,
+                "file_name": name,
+                "file_path": file_path,
+                "file_extension": extension,
+                "file_content": file_content,
+            },
+        )
 
 
 ########################################################################

@@ -45,7 +45,7 @@
             <td>{{ file_name }}</td>
             <td>{{ username }}</td>
             <td>
-                <a href={% url 'app-consult-file' name=file_name %}>
+                <a href={% url 'app-consult-file-last-version' name=file_name %}>
                     <i class="fa fa-eye" style="color:#196EBC;padding-right:1em;scale:1.125;"></i>
                 </a>
                 <a href={% url 'app-consult-versions' name=file_name %}>
