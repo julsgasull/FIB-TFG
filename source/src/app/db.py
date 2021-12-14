@@ -169,24 +169,17 @@ def get_file_all_versions(conn, course_id, file_name):
 
 def get_file_path_version_for_date(conn, course_id, file_name, date):
     """
-    Get file path of the last version of file with name=file name and course_id=course_id
+    Get file path of the version of file with name=file name and course_id=course_id and action_date=date
     :param conn:
     :param course_id:
     :param file_name:
+    :param date:
     """
     sql = """
     SELECT file_path
     FROM files
     WHERE course_id = ? AND file_name = ? AND action_date = ?;
     """
-
-    print("Course id = " + course_id)
-    print("file_name = " + file_name)
-    print("action_date = " + date)
-
-    # SELECT file_path
-    # FROM files
-    # WHERE course_id = 5 AND file_name = "test.txt" AND action_date = "08_12_2021__11_14_46";
 
     cur = conn.cursor()
     params = (course_id, file_name, date)
@@ -195,6 +188,27 @@ def get_file_path_version_for_date(conn, course_id, file_name, date):
     file_path = cur.fetchone()[0]
 
     return file_path
+
+
+def delete_file(conn, course_id, file_name):
+    """
+    Delete file with name=file name and course_id=course_id
+    :param conn:
+    :param course_id:
+    :param file_name:
+    """
+    sql = """
+    DELETE
+    FROM files
+    WHERE course_id = ? AND file_name = ?;
+    """
+
+    # DELETE FROM files WHERE course_id = 5 AND file_name = "cover.jpg";
+
+    cur = conn.cursor()
+    params = (course_id, file_name)
+    cur.execute(sql, params)
+    conn.commit()
 
 
 ########################################################################
@@ -286,3 +300,18 @@ def get_file_path_version_for_date_public(course_id, file_name, date):
         print("Error! cannot create the database connection.")
 
     return file_path
+
+
+########################################################################
+
+
+def delete_file_public(course_id, file_name):
+    conn = create_table_if_missing()
+
+    if conn is not None:
+        try:
+            delete_file(conn, course_id, file_name)
+        except Error as e:
+            print(e)
+    else:
+        print("Error! cannot create the database connection.")

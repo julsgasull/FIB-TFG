@@ -207,15 +207,15 @@ def consult(request):
     tool_conf = get_tool_conf()
 
     files = get_files_first_version_public(course_id)
-    print("FILES:\n")
-    for file in files:
-        print("\n")
-        print("course_id = " + file[0])
-        print("username = " + file[1])
-        print("date = " + file[2])
-        print("file_name = " + file[3])
-        print("file_path = " + file[4])
-    print("---------------------------")
+    # print("FILES:\n")
+    # for file in files:
+    #     print("\n")
+    #     print("course_id = " + file[0])
+    #     print("username = " + file[1])
+    #     print("date = " + file[2])
+    #     print("file_name = " + file[3])
+    #     print("file_path = " + file[4])
+    # print("---------------------------")
 
     return render(
         request,
@@ -314,12 +314,12 @@ def consult_file_version_for_date(request, name, date):
 
     extension = os.path.splitext(name)[1]
     print("extension = " + extension)
-    if extension == ".pdf":
+    if extension == ".pdf" or extension == ".PDF":
         return FileResponse(open(file_path, "rb"), content_type="application/pdf")
-    elif extension == ".png":
+    elif extension == ".png" or extension == ".PNG":
         image_data = open(file_path, "rb").read()
         return HttpResponse(image_data, content_type="image/png")
-    elif extension == ".jpg":
+    elif extension == ".jpg" or extension == ".JPG":
         image_data = open(file_path, "rb").read()
         return HttpResponse(image_data, content_type="image/jpg")
     else:
@@ -348,7 +348,7 @@ def consult_file_version_for_date(request, name, date):
 def delete_file(request, name):
     # get data
     tool_conf = get_tool_conf()
-
-    print("Name = " + name)
+    delete_file_public(course_id, name)
+    print("delete file name = " + name)
 
     return redirect("app-consult")
