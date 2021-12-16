@@ -180,29 +180,32 @@ def upload(request):
     # code for uploading file
     if request.method == "POST":
         # get the file
-        uploaded_file = request.FILES["document"]
-        # compute some information
-        now_string = datetime.now().strftime("%d_%m_%Y__%H_%M_%S")
-        file_name = uploaded_file.name
-        file_path = course_id + "/" + file_name + "/" + now_string + "/" + file_name
-        # save file to media folder
-        fs = FileSystemStorage()
-        fs.save(MEDIA_ROOT + "/" + file_path, uploaded_file)
-        uploaded_file_url = fs.url(file_name)
-        # add to database
-        add_file_public(course_id, user_username, now_string, file_name, file_path)
+        uploaded_file = request.FILES.get("document", False)
+        if uploaded_file != False:
+            # compute some information
+            now_string = datetime.now().strftime("%d_%m_%Y__%H_%M_%S")
+            file_name = uploaded_file.name
+            file_path = course_id + "/" + file_name + "/" + now_string + "/" + file_name
+            # save file to media folder
+            fs = FileSystemStorage()
+            fs.save(MEDIA_ROOT + "/" + file_path, uploaded_file)
+            uploaded_file_url = fs.url(file_name)
+            # add to database
+            add_file_public(course_id, user_username, now_string, file_name, file_path)
 
-        return render(
-            request,
-            "upload.html",
-            {
-                "user_name": user_name,
-                "user_username": user_username,
-                "course_id": course_id,
-                "course_name": course_name,
-                "uploaded_file_url": uploaded_file_url,
-            },
-        )
+            return render(
+                request,
+                "upload.html",
+                {
+                    "user_name": user_name,
+                    "user_username": user_username,
+                    "course_id": course_id,
+                    "course_name": course_name,
+                    "uploaded_file_url": uploaded_file_url,
+                },
+            )
+        else:
+            raise Http404("You must select a file to upload.")
     # data for before uploading
     return render(
         request,
@@ -375,7 +378,9 @@ def delete_file(request, name):
         # db
         delete_file_public(course_id, name)
     else:
-        print("Can not delete the file as it doesn't exists")
+        raise Http404(
+            "Something happened while deleting. Reload the page and try again. Sorry for the inconvenience."
+        )
 
     return redirect("app-consult")
 
@@ -395,4 +400,6 @@ def download_file(request, name):
                 file_path
             )
             return response
-    raise Http404
+    raise Http404(
+        "Something happened while downloading. Reload the page and try again. Sorry for the inconvenience."
+    )
