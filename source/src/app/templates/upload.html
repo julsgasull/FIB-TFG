@@ -36,7 +36,8 @@
             <button class="w3-button" type="submit" style="background-color:#196EBC;color:white;">Penjar</button>
         </form>
         {% if uploaded_file_url %}
-        <p>Consult you upladed file at: <a href="{% url 'app-consult' %}">Consult page</a></p>
+        <p>Consult you upladed file at: <button class="w3-button"><a href="{% url 'app-consult' %}">Consult
+                    page</a></button></p>
         {% endif %}
     </div>
 </div>

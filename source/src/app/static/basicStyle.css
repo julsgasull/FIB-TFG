@@ -1628,27 +1628,3 @@ tt {
 .w3-hover-border-pale-blue:hover {
   border-color: #e7ffff !important;
 }
-
-.topnav {
-  overflow: hidden;
-  background-color: #151c2c;
-}
-.topnav-right {
-  float: right;
-}
-.topnav a,
-.topnav-right div {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-.topnav a.active {
-  background-color: #196ebc;
-  color: white;
-}
