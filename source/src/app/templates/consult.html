@@ -49,7 +49,8 @@
                     <i class="fa fa-download" style="color:#196EBC;padding-right:1em;scale:1.125;"></i>
                 </a>
                 {% if username == user_username %}
-                <a style="text-decoration:none;" href={% url 'app-delete-file' name=file_name %}>
+                <a style="text-decoration:none;" onclick="return confirm('Estàs segur/a que vols esborrar aquest fitxer?');
+                " href={% url 'app-delete-file' name=file_name %}>
                     <i class=" fa fa-trash" style="color:#96021f;padding-right:1em;scale:1.125;"></i>
                 </a>
                 {% endif %}
