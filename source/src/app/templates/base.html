@@ -30,23 +30,24 @@
 <script type="text/javascript" src="{% static 'breakout.js' %}" charset="utf-8"></script>
 
 <body>
-    <div class="w3-panel" style="text-align:right;">
-        <b>Nom d'usuari actual: </b>{{user_username}}
+    <!--- BEGINNING OF GENERAL INFO -->
+    <div class="topnav">
+        <a class="active" href={% url 'app-index' %}>Inici</a>
+        <div class="topnav-right">
+            <div>
+                <b>Nom d'usuari actual: </b>{{user_username}}
+            </div>
+        </div>
     </div>
-    <!-- !PAGE CONTENT! -->
+    <!--- END OF GENERAL INFO -->
+    <!-- BEGIN OF PAGE CONTENT -->
     <div class="w3-content" style="max-width: 1500px">
         {% block content %}
         if you see this, something is wrong!
         {% endblock content %}
     </div>
-    <!-- <div>
-        <h1>TESTING ONLY</h1>
-        <p>"user_name": {{user_name}}</p>
-        <p>"user_username": {{user_username}}</p>
-        <p>"course_id": {{course_id}}</p>
-        <p>"course_name": {{course_name}}</p>
-    </div> -->
-    <!-- Footer -->
+    <!-- END OF PAGE CONTENT -->
+    <!-- BEGIN OF FOOTER -->
     <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-medium">
         <a class="fa fa-instagram w3-hover-opacity" href="https://www.instagram.com/juliagasull/"></a>
         <a class="fa fa-github w3-hover-opacity" href="https://github.com/julsgasull/"></a>
@@ -56,6 +57,7 @@
             <a href="https://github.com/julsgasull/" target="_blank" class="w3-hover-text-green">Júlia Gasull</a>
         </p>
     </footer>
+    <!-- END OF PAGE CONTENT -->
 </body>
 
 </html>

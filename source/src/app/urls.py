@@ -4,6 +4,7 @@ from django.urls import include, path
 from .views import (
     login,
     launch,
+    index,
     upload,
     consult,
     get_jwks,
@@ -19,6 +20,7 @@ from .views import (
 urlpatterns = [
     url(r"^login/$", login, name="app-login"),
     url(r"^launch/$", launch, name="app-launch"),
+    url(r"^index/$", index, name="app-index"),
     url(r"^upload/$", upload, name="app-upload"),
     url(r"^consult/$", consult, name="app-consult"),
     url(r"^jwks/$", get_jwks, name="app-jwks"),

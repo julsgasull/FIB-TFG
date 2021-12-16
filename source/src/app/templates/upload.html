@@ -1,12 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 <header class="w3-panel" style="padding: 20px 16px">
-    <button class="w3-button" style="color:#196EBC;" onclick="goBack()"><i class="fa fa-backward"></i> Enrere</button>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
     <div class="w3-center">
         <h2 class="w3-xlarge">Penjar fitxer</h2>
         <p>En aquesta secció pots penjar un fitxer per l’assignatura <b>{{course_name}}</b>.</p>
@@ -18,24 +12,25 @@
                 <td></br></td>
                 <td>
                     <label class="w3-small">
-                        <i>Per tal de trobar millor els documents, el nom del document hauria tenir un nom amb aquest
-                            format:</i><b><tt>
-                                “nom_del_curs-nom_del_tema-apartat-del-tema-nom-de-l’autor.extensió”</tt></b>.<i> Per
-                            exemple, si un alumne amb el nom</i><b><tt> “John Doe”</tt></b><i> penja apunts de
-                            l’assignatura</i><b><tt> “FM”</tt></b><i>, el tema </i><b><tt> “Introducció”</tt></b><i>, i
-                            l’apartat </i><b><tt> “Què és la lògica?”</tt></b><i> amb el format</i><b><tt>
-                                “pdf”</tt></b><i>, llavors el document es diria:</i><b><tt>
-                                FM-Introducció-QuèÉsLaLògica-JohnDoe.pdf”</tt></b>.
+                        <b>Recorda:</b> Si puges un fitxer amb el mateix nom d'un ja penjat, aquest es reescriurà.</br>
+                        Tot i això, no et preocupis! Sempre pots mirar les versions del fitxer tocant el botó <i
+                            class="fa fa-history" style="color:#196EBC;scale:1.125;"></i> que hi
+                        ha al costat de cada fitxer a la pàgina <a href={% url 'app-consult' %}>Consultar</a>.
                     </label>
                 </td>
             </tr>
         </table>
     </div>
 </header>
-<div class="w3-panel">
+<h2 class="w3-large">Penjar</h2>
+<div style="text-align:center">
+    <img style="width: 75%; height:auto" src="../static/images/study-with-headphones.png" class="w3-image"
+        alt="study with headphones">
+</div>
+</br>
+<div class="w3-panel w3-center">
     <div>
         <form method="post" enctype="multipart/form-data">
-            <label class="w3-large">Penjar:</label>
             {% csrf_token %}
             <input type="file" name="document" accept=".md, .pdf, .png, .jpg, .txt">
             <button class="w3-button" type="submit" style="background-color:#196EBC;color:white;">Penjar</button>
@@ -44,10 +39,6 @@
         <p>Consult you upladed file at: <a href="{% url 'app-consult' %}">Consult page</a></p>
         {% endif %}
     </div>
-    </br></br>
-    <div style="text-align:center">
-        <img style="width: 75%; height:auto" src="../static/images/study-with-headphones.png" class="w3-image"
-            alt="study with headphones">
-    </div>
 </div>
+</br></br>
 {% endblock content %}

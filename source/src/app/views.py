@@ -147,14 +147,21 @@ def launch(request):
         "https://purl.imsglobal.org/spec/lti/claim/context", ""
     ).get("title", "")
 
+    return index(request)
+
+
+########################################################################
+
+
+def index(request):
+    # get data for launch
+    tool_conf = get_tool_conf()
+
     # render index.html
     return render(
         request,
         "index.html",
         {
-            "is_deep_link_launch": message_launch.is_deep_link_launch(),
-            "launch_data": message_launch.get_launch_data(),
-            "launch_id": message_launch.get_launch_id(),
             "user_name": user_name,
             "user_username": user_username,
             "course_id": course_id,

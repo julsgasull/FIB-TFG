@@ -1,12 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 <header class="w3-panel" style="padding: 20px 16px">
-    <button class="w3-button" style="color:#196EBC;" onclick="goBack()"><i class="fa fa-backward"></i> Enrere</button>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
     <div class="w3-center">
         <h2 class="w3-xlarge">Consultar fitxers</h2>
         <p>En aquesta secció pots consultar tots els fitxers de l’assignatura <b>{{course_name}}</b>.</p>
@@ -45,17 +39,17 @@
             <td>{{ file_name }}</td>
             <td>{{ username }}</td>
             <td>
-                <a href={% url 'app-consult-file-last-version' name=file_name %}>
+                <a style="text-decoration:none;" href={% url 'app-consult-file-last-version' name=file_name %}>
                     <i class="fa fa-eye" style="color:#196EBC;padding-right:1em;scale:1.125;"></i>
                 </a>
-                <a href={% url 'app-consult-versions' name=file_name %}>
+                <a style="text-decoration:none;" href={% url 'app-consult-versions' name=file_name %}>
                     <i class="fa fa-history" style="color:#196EBC;padding-right:1em;scale:1.125;"></i>
                 </a>
-                <a href={% url 'app-download-file' name=file_name %}>
+                <a style="text-decoration:none;" href={% url 'app-download-file' name=file_name %}>
                     <i class="fa fa-download" style="color:#196EBC;padding-right:1em;scale:1.125;"></i>
                 </a>
                 {% if username == user_username %}
-                <a href={% url 'app-delete-file' name=file_name %}>
+                <a style="text-decoration:none;" href={% url 'app-delete-file' name=file_name %}>
                     <i class=" fa fa-trash" style="color:#96021f;padding-right:1em;scale:1.125;"></i>
                 </a>
                 {% endif %}
