@@ -4,7 +4,15 @@ import os
 import pprint
 
 from django.conf import settings as django_settings
-from django.http import HttpResponse, HttpResponseForbidden, JsonResponse, FileResponse
+from django.http import (
+    HttpResponse,
+    HttpResponseForbidden,
+    JsonResponse,
+    FileResponse,
+    Http404,
+)
+
+from django.http.response import Http404
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from django.urls import reverse
@@ -363,3 +371,21 @@ def delete_file(request, name):
         print("Can not delete the file as it doesn't exists")
 
     return redirect("app-consult")
+
+
+########################################################################
+
+
+def download_file(request, name):
+    # get data
+    tool_conf = get_tool_conf()
+
+    file_path = MEDIA_ROOT + "/" + get_file_path_last_version_public(course_id, name)
+    if os.path.exists(file_path):
+        with open(file_path, "rb") as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response["Content-Disposition"] = "inline; filename=" + os.path.basename(
+                file_path
+            )
+            return response
+    raise Http404

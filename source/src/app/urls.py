@@ -11,6 +11,7 @@ from .views import (
     consult_file_version_for_date,
     consult_versions,
     delete_file,
+    download_file,
 )
 
 ########################################################################
@@ -40,6 +41,11 @@ urlpatterns = [
         "delete/file/(?P<name>[\w\-]+)",
         delete_file,
         name="app-delete-file",
+    ),
+    path(
+        "download/file/(?P<name>[\w\-]+)",
+        download_file,
+        name="app-download-file",
     ),
 ]
 

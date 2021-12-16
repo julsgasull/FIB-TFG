@@ -49,11 +49,14 @@
                     <i class="fa fa-eye" style="color:#196EBC;padding-right:1em;scale:1.125;"></i>
                 </a>
                 <a href={% url 'app-consult-versions' name=file_name %}>
-                    <i class="fa fa-history" style="color:#196EBC;padding-right:1em;scale:1.125;""></i>
+                    <i class="fa fa-history" style="color:#196EBC;padding-right:1em;scale:1.125;"></i>
+                </a>
+                <a href={% url 'app-download-file' name=file_name %}>
+                    <i class="fa fa-download" style="color:#196EBC;padding-right:1em;scale:1.125;"></i>
                 </a>
                 {% if username == user_username %}
-                <a href={% url 'app-delete-file' name=file_name %} onclick=" return location.reload()">
-                        <i class=" fa fa-trash" style="color:#96021f;padding-right:1em;scale:1.125;"></i>
+                <a href={% url 'app-delete-file' name=file_name %}>
+                    <i class=" fa fa-trash" style="color:#96021f;padding-right:1em;scale:1.125;"></i>
                 </a>
                 {% endif %}
             </td>
