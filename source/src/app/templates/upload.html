@@ -5,22 +5,6 @@
         <h2 class="w3-xlarge">Penjar fitxer</h2>
         <p>En aquesta secció pots penjar un fitxer per l’assignatura <b>{{course_name}}</b>.</p>
     </div>
-    <div style=" padding: 5px;background-color: #d1eeff;">
-        <table>
-            <tr>
-                <td><i class="fa fa-info-circle" style="color:#196EBC"></i></td>
-                <td></br></td>
-                <td>
-                    <label class="w3-small">
-                        <b>Recorda:</b> Si puges un fitxer amb el mateix nom d'un ja penjat, aquest es reescriurà.</br>
-                        Tot i això, no et preocupis! Sempre pots mirar les versions del fitxer tocant el botó <i
-                            class="fa fa-history" style="color:#196EBC;scale:1.125;"></i> que hi
-                        ha al costat de cada fitxer a la pàgina <a href={% url 'app-consult' %}>Consultar</a>.
-                    </label>
-                </td>
-            </tr>
-        </table>
-    </div>
 </header>
 <h2 class="w3-large">Penjar</h2>
 <div style="text-align:center">
@@ -29,6 +13,24 @@
 </div>
 </br>
 <div class="w3-panel w3-center">
+    <div style=" padding: 5px;background-color: #d1eeff;">
+        <table>
+            <tr>
+                <td><i class="fa fa-info-circle" style="color:#196EBC"></i></td>
+                <td></br></td>
+                <td style="text-align:left;">
+                    <label class="w3-opacity w3-small">
+                        <b>Recordatori:</b> Si puges un fitxer amb el mateix nom d'un ja penjat, aquest es
+                        reescriurà.</br>
+                        Tot i això, no et preocupis! Sempre pots mirar les versions del fitxer tocant el botó <i
+                            class="fa fa-history" style="color:#196EBC;scale:1.125;"></i> que hi
+                        ha al costat de cada fitxer a la pàgina <a href={% url 'app-consult' %}>Consultar</a>.
+                    </label>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br>
     <div>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
