@@ -261,6 +261,48 @@ def get_jwks(request):
 ########################################################################
 
 
+def edit_file_last_version(request, name):
+    # get data
+    tool_conf = get_tool_conf()
+
+    file_path = MEDIA_ROOT + "/" + get_file_path_last_version_public(course_id, name)
+
+    extension = os.path.splitext(name)[1]
+    print("extension = " + extension)
+    if (
+        extension == ".md"
+        or extension == ".MD"
+        or extension == ".txt"
+        or extension == ".TXT"
+    ):
+        f = open(file_path, "r")
+        file_content = f.read()
+        f.close()
+        return render(
+            request,
+            "edit_file.html",
+            {
+                "user_name": user_name,
+                "user_username": user_username,
+                "course_id": course_id,
+                "course_name": course_name,
+                "file_name": name,
+                "file_path": file_path,
+                "file_extension": extension,
+                "file_content": file_content,
+            },
+        )
+    else:
+        raise Http404(
+            "This file type ("
+            + extension
+            + ") cannot be edited. Try uploading the new version with the same name to modify it."
+        )
+
+
+########################################################################
+
+
 def consult_file_last_version(request, name):
     # get data
     tool_conf = get_tool_conf()

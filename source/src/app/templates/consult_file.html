@@ -14,6 +14,11 @@
     </div>
 </div>
 </br>
+<div style="text-align:right;">
+    <a style="text-decoration:none;" href={% url 'app-edit-file-last-version' name=file_name %}>
+        <i class="fa fa-pencil" style="color:#196EBC;padding:4em;scale:2;"></i>
+    </a>
+</div>
 <div style=" width: 100%; border-radius: 0.4em; background: #f1f1f1; padding: 20px;">
     {% if file_extension == ".md" %}
     {{ file_content | markdownify }}

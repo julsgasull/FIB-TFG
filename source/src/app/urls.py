@@ -9,6 +9,7 @@ from .views import (
     consult,
     get_jwks,
     consult_file_last_version,
+    edit_file_last_version,
     consult_file_version_for_date,
     consult_versions,
     delete_file,
@@ -28,6 +29,11 @@ urlpatterns = [
         "consult/file/(?P<name>[\w\-]+)",
         consult_file_last_version,
         name="app-consult-file-last-version",
+    ),
+    path(
+        "edit/file/(?P<name>[\w\-]+)",
+        edit_file_last_version,
+        name="app-edit-file-last-version",
     ),
     path(
         "consult/versions/file/(?P<name>[\w\-]+)",
