@@ -18,6 +18,22 @@
         <i class="fa fa-pencil" style="color:#196EBC;padding:4em;scale:2;"></i>
     </a>
 </div>
+<div style=" padding: 5px;background-color: #d1eeff;">
+    <table>
+        <tr>
+            <td><i class="fa fa-info-circle" style="color:#196EBC"></i></td>
+            <td></br></td>
+            <td style="text-align:left;">
+                <label class="w3-opacity w3-small">
+                    <b>Recordatori:</b> Si estàs veient una versió antiga del fitxer i l'intentes editar, ho faràs a
+                    partir de la versió més nova, així que no t'extranyis si veus un contingut diferent al editar que el
+                    que estàs veient ara.</br>
+                </label>
+            </td>
+        </tr>
+    </table>
+</div>
+<br>
 <div style=" width: 100%; border-radius: 0.4em; background: #f1f1f1; padding: 20px;">
     {% if file_extension == ".md" %}
     {{ file_content | markdownify }}

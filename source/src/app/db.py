@@ -151,7 +151,7 @@ def get_file_all_versions(conn, course_id, file_name):
     SELECT username, action_date, file_path
     FROM files
     WHERE course_id = ? AND file_name = ?
-    ORDER BY action_date
+    ORDER BY action_date DESC
     """
 
     cur = conn.cursor()

@@ -278,6 +278,22 @@ def edit_file_last_version(request, name):
         f = open(file_path, "r")
         file_content = f.read()
         f.close()
+
+        # code for editing file
+        if request.method == "POST":
+            new_content = request.POST["content"]
+            now_string = datetime.now().strftime("%d_%m_%Y__%H_%M_%S")
+            # create folders if don't exist
+            file_dir_path = course_id + "/" + name + "/" + now_string
+            os.makedirs(MEDIA_ROOT + "/" + file_dir_path, exist_ok=False)
+            # create file and fill it
+            file_path = course_id + "/" + name + "/" + now_string + "/" + name
+            f = open(MEDIA_ROOT + "/" + file_path, "w+")
+            f.write(new_content)
+            # add to database
+            add_file_public(course_id, user_username, now_string, name, file_path)
+            return consult_versions(request, name)
+        # data for before editing
         return render(
             request,
             "edit_file.html",
@@ -305,10 +321,12 @@ def edit_file_last_version(request, name):
 
 def consult_file_last_version(request, name):
     # get data
+    print("Consult_file_last_version")
+
     tool_conf = get_tool_conf()
 
     file_path = MEDIA_ROOT + "/" + get_file_path_last_version_public(course_id, name)
-
+    print("    File path = " + file_path)
     extension = os.path.splitext(name)[1]
     print("extension = " + extension)
     if extension == ".pdf":
@@ -445,3 +463,6 @@ def download_file(request, name):
     raise Http404(
         "Something happened while downloading. Reload the page and try again. Sorry for the inconvenience."
     )
+
+
+########################################################################
