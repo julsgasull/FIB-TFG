@@ -39,7 +39,7 @@
 	<form method="get" action="" role="option">
 		<div>
 			<select class="w3-select" id="action">
-				<option value=" hide">-- Selecciona una acció --</option>
+				<option value="hide">-- Selecciona una acció --</option>
 				<option value="upload">Penjar</option>
 				<option value="consult">Consultar</option>
 			</select>
@@ -53,7 +53,8 @@
 		jQuery(document).ready(function () {
 			jQuery("#submit").click(function () {
 				var action_value = $('#action').val();
-				if (action_value != "hide") window.location.href = '/' + action_value;
+				if (action_value == "hide") alert("Si us plau, selecciona una opció.");
+				else window.location.href = '/' + action_value;
 			});
 		});
 	</script>

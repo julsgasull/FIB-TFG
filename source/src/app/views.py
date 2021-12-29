@@ -329,12 +329,12 @@ def consult_file_last_version(request, name):
     print("    File path = " + file_path)
     extension = os.path.splitext(name)[1]
     print("extension = " + extension)
-    if extension == ".pdf":
+    if extension == ".pdf" or extension == ".PDF":
         return FileResponse(open(file_path, "rb"), content_type="application/pdf")
-    elif extension == ".png":
+    elif extension == ".png" or extension == ".PNG":
         image_data = open(file_path, "rb").read()
         return HttpResponse(image_data, content_type="image/png")
-    elif extension == ".jpg":
+    elif extension == ".jpg" or extension == ".JPG":
         image_data = open(file_path, "rb").read()
         return HttpResponse(image_data, content_type="image/jpg")
     else:
