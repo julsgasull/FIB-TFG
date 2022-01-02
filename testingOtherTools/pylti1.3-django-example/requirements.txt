@@ -1,4 +1,0 @@
-cryptography==35.0.0
-django==3.2.9
-django-debug-toolbar==3.2.2
-PyLTI1p3==1.9.1
