@@ -48,13 +48,13 @@ Per tal de configurar l'eina amb un LMS que no sigui Moodle, mirar la següent [
 }
 ```
 * Has de canviar els paràmetres desitjats, de la següent manera:
-  * `http://localhost:8888/moodle311` representa l'issuer, és a dir, el link del teu LMS. Per exemple, `http://atenea.upc.edu/`.
-  * `client_id` el trobaràs intentant editar altre cop l'eina que has acabat de configurar. En aques cas és `QZEVvxMO8DvGBbL`.
+  * `http://localhost:8888/moodle311`: representa l'issuer, és a dir, el link del teu LMS. Per exemple, `http://atenea.upc.edu/`.
+  * `client_id`: el trobaràs intentant editar altre cop l'eina que has acabat de configurar. En aques cas és `QZEVvxMO8DvGBbL`.
     * ![get client id 1](./images/get_client_id_1.png), ![et client id 2](./images/get_client_id_2.png)
   * `deploymeet_ids`: el trobaràs intentant veure l'informació de l'que has acabat de configurar. En aques cas és `["6"]`.
     *  ![get deployment info](./images/get_deployment_info.png), ![tool configuration details](./images/tool_configuration_details.png)
-  *  `auth_token_url`: el trobaràs igual que l'anterior. En aquest cas és `http://localhost:8888/moodle311/mod/lti/token.php`,
-  *  `auth_login_url`: el trobaràs igual que l'anterior. En aquest cas és `http://localhost:8888/moodle311/mod/lti/auth.php`,
+  *  `auth_token_url`: el trobaràs igual que l'anterior. En aquest cas és `http://localhost:8888/moodle311/mod/lti/token.php`.
+  *  `auth_login_url`: el trobaràs igual que l'anterior. En aquest cas és `http://localhost:8888/moodle311/mod/lti/auth.php`.
   *  `key_set`: per arribar-hi, has de seguir el mateix format de link que els anteriors. En aquest cas, seria `http://localhost:8888/moodle311/mod/lti/certs.php`. Si el link que moodle et dona normalment fos `http://atenea.upc.edu/mod/lti/X.php`, llavors hauries d'anar a `http://atenea.upc.edu/mod/lti/X.php`.
   *  `private_key_file` i `public_key_file`: abans els has guardat a `/source/configs/`, només hi has de posar el path.
   *  La resta de paràmetres deixa'ls així.
