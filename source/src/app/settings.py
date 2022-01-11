@@ -63,6 +63,8 @@ MARKDOWNIFY_WHITELIST_TAGS = {
     "th",
     "tr",
     "td",
+    "blockquote",
+    "hr",
 }
 
 MIDDLEWARE = [
